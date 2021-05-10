@@ -23,7 +23,8 @@ jobs:
     - name: Configure Porter
       id: configure_porter
       run: |2
-
+      
+        sudo porter config set-host https://dashboard.staging.getporter.dev
         sudo porter auth login --token ${{secrets.PORTER_TOKEN_15}}
         sudo porter docker configure
     - name: Docker build, push
@@ -38,4 +39,4 @@ jobs:
       id: deploy_porter
       run: |2
 
-        curl -X POST "https://dashboard.getporter.dev/api/webhooks/deploy/${{secrets.WEBHOOK_CRON_JOB_TOGGLE_TEST}}?commit=$(git rev-parse --short HEAD)&repository=393629051022.dkr.ecr.us-east-2.amazonaws.com/cron-job-toggle-test-default"
+        curl -X POST "https://dashboard.staging.getporter.dev/api/webhooks/deploy/${{secrets.WEBHOOK_CRON_JOB_TOGGLE_TEST}}?commit=$(git rev-parse --short HEAD)&repository=393629051022.dkr.ecr.us-east-2.amazonaws.com/cron-job-toggle-test-default"
