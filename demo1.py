@@ -1,5 +1,5 @@
 import os
 import time 
 
-print(os.environ['NODE_ENV'])
+print("got environ var", os.environ['NODE_ENV'])
 time.sleep(100)
