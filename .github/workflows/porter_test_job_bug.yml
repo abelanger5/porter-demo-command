@@ -22,3 +22,11 @@ jobs:
         project: "12"
         tag: ${{ steps.vars.outputs.sha_short }}
         token: ${{ secrets.PORTER_TOKEN_12 }}
+    - name: Run Porter job
+      uses: porter-dev/porter-run-job-action@main
+      with:
+        job: test-job-bug
+        cluster: "11"
+        host: https://dashboard.staging.getporter.dev
+        project: "12"
+        token: ${{ secrets.PORTER_TOKEN_12 }}
